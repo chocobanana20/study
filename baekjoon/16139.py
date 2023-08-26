@@ -1,5 +1,5 @@
 import sys
-s=sys.stdin.readline().rstrip()
+s=sys.stdin.readline().rstrip() # readline()은 /n도 같이 받아져서 rstrip을 해야함
 arr=[[0 for _ in range(26) ] for _ in range(len(s))]
 arr[0][ord(s[0])-97]+=1 
 for i in range(1,len(s)):
