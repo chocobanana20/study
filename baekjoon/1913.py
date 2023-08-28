@@ -1,0 +1,19 @@
+N = int(input())
+time = []
+
+
+for i in range(N):
+    start, end = map(int, input().split())
+    time.append([start, end])
+
+time = sorted(time, key = lambda a : (a[1], a[0]))  # point  
+
+last_end = 0
+cnt = 0
+
+for start, end in time:
+    if start >= last_end:
+        cnt += 1
+        last_end = end
+
+print(cnt)
