@@ -8,33 +8,25 @@ for i in range(n):
     a=input().rstrip()
     arr.append(a)
 
-blue=[[0]*(m+1) for _ in range(n+1)]
-white=[[0]*(m+1) for _ in range(n+1)]
-
-for i in range(1,n+1):
-    for k in range(1,m+1):
+def solve(color):
+    arr1=[[0]*(m+1) for _ in range(n+1)]
+    for i in range(1,n+1):
+        for k in range(1,m+1):
         
-        if (i+k)%2==0:  
-            if arr[i-1][k-1]=="W":
-                blue[i][k]=1
+            if (i+k)%2==0:  
+                if arr[i-1][k-1]==color:
+                    arr1[i][k]=1  # 파란색이어야 할 자리가 w임으로 바꿔줘야함  바꿀 필요가 없다면 0이겠지
+               
             else:
-                white[i][k]=1
-        else:
-            if arr[i-1][k-1]=="B":
-                blue[i][k]=1
-            else:
-                white[i][k]=1
-        white[i][k]=white[i][k]+white[i-1][k]+white[i][k-1]-white[i-1][k-1]
-        blue[i][k]=blue[i][k]+blue[i-1][k]+blue[i][k-1]-blue[i-1][k-1]
-        
-        
-ans=[]
-for i in range(t,n+1):
-    for k in range(t,m+1):
-        check1=white[i][k]-white[i-t][k]-white[i][k-t]+white[i-t][k-t]
-        check2=blue[i][k]-blue[i-t][k]-blue[i][k-t]+blue[i-t][k-t]
-        ans.append(check1)
-        ans.append(check2)
-    
-print(min(ans))
-        
+                if arr[i-1][k-1]!=color:
+                    arr1[i][k]=1
+            arr1[i][k]=arr1[i][k]+arr1[i-1][k]+arr1[i][k-1]-arr1[i-1][k-1]
+    check = []
+    for i in range(t,n+1):
+        for k in range(t,m+1):
+            check.append(arr1[i][k]-arr1[i-t][k]-arr1[i][k-t]+arr1[i-t][k-t])
+    return min(check)
+         
+                    #위에 주석 1또는 0 // 11660 문제처럼 구하기
+                    
+print(min(solve("B"),solve("W")))
