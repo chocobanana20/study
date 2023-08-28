@@ -10,7 +10,6 @@ for i in range(len(arr)):
     arr[i]=check+[arr[i]]
 ans=[]
 for i in arr:
-
     ans.append(len(i))
 
 
