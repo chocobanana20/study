@@ -23,6 +23,5 @@ def solution(x,y,n):
     else:
         print(check,end='')            
     
-print("(",end='')
+
 solution(0,0,n)
-print(")",end='')
